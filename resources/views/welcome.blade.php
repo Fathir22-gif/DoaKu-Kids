@@ -17,7 +17,13 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
+    <body class="bg-gradient-to-br from-yellow-100 via-amber-200 to-yellow-300 dark:bg-yellow-900 text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col font-sans">
+        <!-- Floating bubbles background -->
+        <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full mix-blend-overlay filter blur-xl opacity-60"></div>
+            <div class="absolute bottom-20 right-10 w-48 h-48 bg-white rounded-full mix-blend-overlay filter blur-xl opacity-60"></div>
+            <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full mix-blend-overlay filter blur-xl opacity-50"></div>
+        </div>
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
@@ -51,187 +57,184 @@
             <main class="w-full max-w-7xl mx-auto py-8">
 
     <!-- Hero -->
-    <section class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl shadow-xl p-10 text-white">
+    <section class="relative bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-500 rounded-[3.5rem] shadow-[0_20px_50px_rgba(99,102,241,0.4)] p-10 md:p-14 overflow-hidden text-white border-8 border-white/60">
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-yellow-400 opacity-40 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-56 h-56 rounded-full bg-pink-400 opacity-50 blur-2xl"></div>
+        <div class="absolute top-1/2 left-1/2 w-40 h-40 rounded-full bg-cyan-300 opacity-40 blur-2xl"></div>
 
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-
-            <div class="lg:w-1/2">
-
-                <h1 class="text-5xl font-extrabold mb-4">
-                    🌙 DoaKu Kids
-                </h1>
-
-                <p class="text-xl leading-relaxed text-green-100">
-                    Belajar doa sehari-hari menjadi lebih mudah,
-                    menyenangkan, dan interaktif untuk anak-anak.
-                </p>
-
-                <div class="mt-8 flex gap-4">
-
-                    <a href="#list-doa"
-                        class="bg-white text-green-600 font-bold px-6 py-3 rounded-xl shadow hover:bg-green-50 transition">
-
-                        📖 Lihat Doa
-
-                    </a>
-
-                    <a href="#random-doa"
-                        class="bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl shadow hover:bg-yellow-300 transition">
-
-                        ⭐ Doa Hari Ini
-
-                    </a>
-
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <div class="inline-block px-5 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-extrabold tracking-wider mb-6 border-2 border-white/50 text-yellow-100 shadow-lg">
+                    🎈 UNTUK ANAK PINTAR & SOLEH 🎈
                 </div>
-
+                <h1 class="text-6xl lg:text-7xl font-black mb-6 leading-tight drop-shadow-xl text-white tracking-tight">
+                    <span class="inline-block animate-bounce origin-bottom text-yellow-300">🌟</span> DoaKu Kids
+                </h1>
+                <p class="text-2xl leading-relaxed text-blue-50 font-bold mb-10 drop-shadow-md">
+                    Belajar doa sehari-hari jadi lebih seru,
+                    menyenangkan, dan gampang banget! Ayo mulai! 🚀
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <a href="#list-doa"
+                        class="group bg-yellow-400 text-yellow-900 font-black text-lg px-8 py-4 rounded-full shadow-[0_8px_0_#b45309] hover:shadow-[0_4px_0_#b45309] hover:translate-y-1 transition-all duration-200 flex items-center gap-2 border-2 border-yellow-500">
+                        <span class="text-2xl group-hover:animate-bounce">📖</span> AYO BELAJAR!
+                    </a>
+                    <a href="#random-doa"
+                        class="group bg-white text-blue-600 font-black text-lg px-8 py-4 rounded-full shadow-[0_8px_0_#93c5fd] hover:shadow-[0_4px_0_#93c5fd] hover:translate-y-1 transition-all duration-200 flex items-center gap-2 border-2 border-blue-200">
+                        <span class="text-2xl group-hover:rotate-12 transition-transform">🎁</span> DOA HARI INI
+                    </a>
+                </div>
             </div>
-
-            <div class="lg:w-1/2 flex justify-center">
-
+            <div class="lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative">
+                <div class="absolute inset-0 bg-white opacity-20 blur-3xl rounded-full"></div>
                 <img
                     src="https://cdn-icons-png.flaticon.com/512/387/387569.png"
-                    class="w-72">
-
+                    class="w-72 relative z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-500 ease-in-out" alt="Kids praying">
             </div>
-
         </div>
-
     </section>
 
 
     <!-- Search -->
-
-    <section class="mt-10">
-
-        <div class="bg-white rounded-2xl shadow-lg p-6">
-
-            <h2 class="text-2xl font-bold text-gray-800 mb-5">
-
-                🔍 Cari Doa
-
-            </h2>
-
-            <form action="{{ url('/doa/search') }}" method="GET">
-
-                <div class="flex gap-3">
-
-                    <input
-                        type="text"
-                        name="keyword"
-                        placeholder="Contoh : tidur, makan..."
-                        class="w-full border rounded-xl px-5 py-3 focus:ring-2 focus:ring-green-500">
-
-                    <button
-                        class="bg-green-600 hover:bg-green-700 text-white font-bold px-8 rounded-xl">
-
-                        Cari
-
-                    </button>
-
+    <section class="mt-12 relative z-20 -top-8 px-4">
+        <div class="bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-[0_15px_40px_rgba(0,0,0,0.12)] border-4 border-white p-6 md:p-8 max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0 bg-gradient-to-br from-pink-400 to-rose-500 w-20 h-20 rounded-[1.5rem] flex items-center justify-center text-4xl shadow-lg shadow-pink-500/30 transform -rotate-6">
+                    🔍
                 </div>
-
-            </form>
-
+                <div class="flex-1 w-full">
+                    <h2 class="text-3xl font-black text-gray-800 mb-3 text-center md:text-left drop-shadow-sm">
+                        Cari Doa Pilihanmu Yuk!
+                    </h2>
+                    <form action="{{ url('/doa/search') }}" method="GET" class="w-full">
+                        <div class="flex flex-col sm:flex-row gap-4 w-full">
+                            <input
+                                type="text"
+                                name="keyword"
+                                placeholder="Cari: mau tidur, makan, belajar..."
+                                class="flex-1 border-4 border-gray-100 rounded-3xl px-6 py-4 focus:ring-0 focus:border-pink-400 outline-none transition-all text-xl font-bold text-gray-700 bg-gray-50 shadow-inner">
+                            <button
+                                class="bg-pink-500 hover:bg-pink-600 text-white font-black px-8 py-4 rounded-3xl shadow-[0_6px_0_#be185d] hover:shadow-[0_3px_0_#be185d] hover:translate-y-1 transition-all text-xl whitespace-nowrap">
+                                Cari Sekarang!
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
     </section>
 <!-- Random Doa -->
-<section id="random-doa" class="mt-10">
-
-    <h2 class="text-3xl font-bold mb-6 text-green-700">
-        ⭐ Doa Hari Ini
-    </h2>
-
-    <div class="bg-gradient-to-r from-yellow-100 to-green-100 rounded-2xl shadow-lg p-8">
-
-        @if(!empty($randomPrayer))
-
-            <h3 class="text-2xl font-bold text-green-700">
-                {{ $randomPrayer['doa'] }}
-            </h3>
-
-            <p class="text-3xl text-right mt-6 leading-loose">
-                {{ $randomPrayer['ayat'] }}
-            </p>
-
-            <p class="italic text-gray-700 mt-4">
-                {{ $randomPrayer['latin'] }}
-            </p>
-
-            <p class="mt-4 text-gray-800">
-                {{ $randomPrayer['artinya'] }}
-            </p>
-
-        @else
-
-            <p>Tidak ada doa.</p>
-
-        @endif
-
+<section id="random-doa" class="mt-8 mb-16 px-4">
+    <div class="flex items-center gap-4 mb-10 justify-center">
+        <span class="w-16 h-2 bg-pink-400 rounded-full hidden sm:block"></span>
+        <h2 class="text-4xl sm:text-5xl font-black text-gray-800 tracking-tight text-center drop-shadow-md">
+            <span class="text-yellow-500 inline-block animate-pulse">⭐</span> Doa Spesial Hari Ini <span class="text-yellow-500 inline-block animate-pulse">⭐</span>
+        </h2>
+        <span class="w-16 h-2 bg-pink-400 rounded-full hidden sm:block"></span>
     </div>
 
+    <div class="relative max-w-4xl mx-auto">
+        <!-- Decorative background elements -->
+        <div class="absolute -inset-4 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 opacity-40 blur-3xl rounded-[3rem]"></div>
+        
+        <div class="relative bg-white rounded-[3.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-8 border-white p-8 md:p-14 overflow-hidden text-center">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-pink-50 rounded-bl-[120px] -z-0"></div>
+            <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-50 rounded-tr-[100px] -z-0"></div>
+            
+            <div class="relative z-10">
+                @if(!empty($randomPrayer))
+                    <div class="inline-block bg-gradient-to-r from-pink-400 to-rose-400 text-white font-black px-6 py-2 rounded-full text-sm mb-6 uppercase tracking-widest shadow-lg transform -rotate-2">
+                        🎉 Buat Kamu Nih! 🎉
+                    </div>
+                    
+                    <h3 class="text-4xl md:text-5xl font-black text-purple-700 mb-8 leading-tight drop-shadow-sm">
+                        {{ $randomPrayer['doa'] }}
+                    </h3>
+
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-[2.5rem] p-8 md:p-12 mb-8 border-4 border-white shadow-inner">
+                        <p class="text-4xl md:text-5xl text-gray-800 leading-normal font-bold" dir="rtl" style="line-height: 1.8;">
+                            {{ $randomPrayer['ayat'] }}
+                        </p>
+                    </div>
+
+                    <p class="text-2xl text-pink-600 font-bold italic mb-6 leading-relaxed px-4">
+                        "{{ $randomPrayer['latin'] }}"
+                    </p>
+
+                    <div class="w-24 h-2 bg-gradient-to-r from-pink-200 to-purple-200 mx-auto mb-6 rounded-full"></div>
+
+                    <p class="text-xl text-gray-700 font-bold max-w-2xl mx-auto leading-relaxed">
+                        {{ $randomPrayer['artinya'] }}
+                    </p>
+                @else
+                    <div class="py-12 flex flex-col items-center">
+                        <span class="text-6xl mb-4">🥺</span>
+                        <p class="text-xl font-bold text-gray-500">Belum ada doa untuk hari ini.</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 </section>
 
 
 <!-- Semua Doa -->
-<section id="list-doa" class="mt-12">
+<section id="list-doa" class="mt-20 px-4 mb-20">
+    <div class="flex items-center gap-4 mb-12 justify-center">
+        <span class="w-16 h-2 bg-blue-400 rounded-full hidden sm:block"></span>
+        <h2 class="text-4xl sm:text-5xl font-black text-gray-800 tracking-tight text-center drop-shadow-md">
+            <span class="text-blue-500 inline-block -rotate-12 animate-bounce">📚</span> Kumpulan Doa <span class="text-blue-500 inline-block rotate-12 animate-bounce">📚</span>
+        </h2>
+        <span class="w-16 h-2 bg-blue-400 rounded-full hidden sm:block"></span>
+    </div>
 
-    <h2 class="text-3xl font-bold text-green-700 mb-8">
-
-        📖 Daftar Doa
-
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse($prayers as $prayer)
-
-            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
-
-                <h3 class="text-xl font-bold text-green-700 mb-3">
-
+            <div class="group bg-white rounded-[2.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.08)] border-4 border-white p-7 transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(59,130,246,0.2)] flex flex-col h-full relative overflow-hidden">
+                <!-- Color decoration -->
+                <div class="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400"></div>
+                
+                <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600 rounded-[1.2rem] flex items-center justify-center text-2xl mb-6 font-black shadow-sm group-hover:scale-110 group-hover:from-blue-500 group-hover:to-indigo-500 group-hover:text-white transition-all duration-300 transform -rotate-3 group-hover:rotate-0">
+                    {{ $loop->iteration }}
+                </div>
+                
+                <h3 class="text-2xl font-black text-gray-800 mb-4 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">
                     {{ $prayer['doa'] }}
-
                 </h3>
 
-                <p class="text-gray-600 text-sm line-clamp-3">
+                @if(!empty($prayer['ayat']))
+                <div class="mb-4 text-right bg-blue-50/50 p-4 rounded-2xl border border-blue-100/50 shadow-inner">
+                    <p class="text-2xl text-gray-800 font-bold leading-relaxed line-clamp-3" dir="rtl" style="line-height: 1.8;">
+                        {{ $prayer['ayat'] }}
+                    </p>
+                </div>
+                @endif
 
-                    {{ Str::limit($prayer['artinya'],120) }}
-
+                <p class="text-gray-500 text-base leading-relaxed line-clamp-2 mb-8 flex-grow font-semibold">
+                    {{ Str::limit($prayer['artinya'], 100) }}
                 </p>
 
-                <div class="mt-6 flex gap-2">
-
-                    <a href="{{ url('/doa/'.$prayer['id']) }}"
-                       class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-
-                        Detail
-
+                <div class="mt-auto flex gap-4 pt-5 border-t-2 border-dashed border-gray-100">
+                    <a href="{{ route('doa.detail', $prayer['id'] ?? '') }}"
+                       class="flex-1 bg-blue-50 text-blue-700 font-black px-4 py-3.5 rounded-2xl hover:bg-blue-500 hover:text-white hover:shadow-[0_6px_0_#1d4ed8] shadow-[0_4px_0_#bfdbfe] transition-all text-center text-lg hover:-translate-y-1">
+                        Buka Doa
                     </a>
 
                     <button
-                        class="bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-500">
-
-                        ❤ Favorit
-
+                        class="bg-rose-50 text-rose-600 font-black px-5 py-3.5 rounded-2xl hover:bg-rose-500 hover:text-white hover:shadow-[0_6px_0_#be123c] shadow-[0_4px_0_#fecdd3] transition-all text-lg flex items-center justify-center gap-1 group/btn hover:-translate-y-1">
+                        <span class="group-hover/btn:scale-125 transition-transform duration-300 drop-shadow-sm">❤</span>
                     </button>
-
                 </div>
-
             </div>
-
         @empty
-
-            <div class="col-span-3 text-center text-gray-500">
-
-                Data doa tidak ditemukan.
-
+            <div class="col-span-full py-16 text-center bg-gray-50 rounded-3xl border-2 border-dashed border-gray-300">
+                <span class="text-6xl mb-5 block drop-shadow-md">🔍</span>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Yah, doanya belum ketemu</h3>
+                <p class="text-gray-500 font-medium text-lg">Coba cari dengan kata kunci lain ya!</p>
             </div>
-
         @endforelse
-
     </div>
-
 </section>
 
 
