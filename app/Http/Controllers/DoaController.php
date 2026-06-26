@@ -26,7 +26,15 @@ class DoaController extends Controller
         $prayers = $this->doaService->getAllPrayers();
         $randomPrayer = $this->doaService->getRandomPrayer();
 
-        return view('welcome', compact('prayers', 'randomPrayer'));
+        $favoriteIds = [];
+        if (Auth::check()) {
+            $favoriteIds = $this->favoriteService
+                ->getFavoritesByUser(Auth::id())
+                ->pluck('prayer_id')
+                ->toArray();
+        }
+
+        return view('welcome', compact('prayers', 'randomPrayer', 'favoriteIds'));
     }
 
     /**
@@ -59,10 +67,19 @@ class DoaController extends Controller
 
         $prayers = $this->doaService->searchPrayers($query);
 
+        $favoriteIds = [];
+        if (Auth::check()) {
+            $favoriteIds = $this->favoriteService
+                ->getFavoritesByUser(Auth::id())
+                ->pluck('prayer_id')
+                ->toArray();
+        }
+
         return view('welcome', [
-            'prayers' => $prayers,
+            'prayers'     => $prayers,
             'randomPrayer' => null,
-            'searchQuery' => $query
+            'searchQuery' => $query,
+            'favoriteIds' => $favoriteIds,
         ]);
     }
 }

@@ -28,7 +28,19 @@
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
-                        <span class="inline-block px-5 py-1.5 text-[#1b1b18] dark:text-[#EDEDEC] text-sm leading-normal font-semibold">
+                        <a href="{{ route('home') }}"
+                            class="inline-block px-3 py-1.5 text-[#1b1b18] dark:text-[#EDEDEC] text-sm leading-normal hover:underline">
+                            🏠 Beranda
+                        </a>
+                        <a href="{{ route('favorites.index') }}"
+                            class="inline-block px-3 py-1.5 text-[#1b1b18] dark:text-[#EDEDEC] text-sm leading-normal hover:underline">
+                            ❤️ Favorit
+                        </a>
+                        <a href="{{ route('memorization.index') }}"
+                            class="inline-block px-3 py-1.5 text-[#1b1b18] dark:text-[#EDEDEC] text-sm leading-normal hover:underline">
+                            📖 Hafalan
+                        </a>
+                        <span class="inline-block px-3 py-1.5 text-[#1b1b18] dark:text-[#EDEDEC] text-sm leading-normal font-semibold">
                             👤 {{ Auth::user()->name }}
                         </span>
                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
@@ -225,10 +237,25 @@
                         Buka Doa
                     </a>
 
-                    <button
-                        class="bg-rose-50 text-rose-600 font-black px-5 py-3.5 rounded-2xl hover:bg-rose-500 hover:text-white hover:shadow-[0_6px_0_#be123c] shadow-[0_4px_0_#fecdd3] transition-all text-lg flex items-center justify-center gap-1 group/btn hover:-translate-y-1">
-                        <span class="group-hover/btn:scale-125 transition-transform duration-300 drop-shadow-sm">❤</span>
-                    </button>
+                    @auth
+                        @php $isFav = in_array((string)($prayer['id'] ?? ''), array_map('strval', $favoriteIds ?? [])); @endphp
+                        <form method="POST" action="{{ route('favorites.toggle') }}" class="inline">
+                            @csrf
+                            <input type="hidden" name="prayer_id" value="{{ $prayer['id'] ?? '' }}">
+                            <input type="hidden" name="prayer_title" value="{{ $prayer['doa'] ?? '' }}">
+                            <button type="submit"
+                                class="{{ $isFav ? 'bg-rose-500 text-white shadow-[0_4px_0_#be123c]' : 'bg-rose-50 text-rose-600 shadow-[0_4px_0_#fecdd3]' }} font-black px-5 py-3.5 rounded-2xl hover:bg-rose-500 hover:text-white hover:shadow-[0_6px_0_#be123c] transition-all text-lg flex items-center justify-center gap-1 hover:-translate-y-1"
+                                title="{{ $isFav ? 'Hapus dari favorit' : 'Tambah ke favorit' }}">
+                                {{ $isFav ? '❤️' : '🤍' }}
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="bg-rose-50 text-rose-600 font-black px-5 py-3.5 rounded-2xl hover:bg-rose-500 hover:text-white hover:shadow-[0_6px_0_#be123c] shadow-[0_4px_0_#fecdd3] transition-all text-lg flex items-center justify-center gap-1 hover:-translate-y-1"
+                            title="Login untuk menambah favorit">
+                            🤍
+                        </a>
+                    @endauth
                 </div>
             </div>
         @empty
