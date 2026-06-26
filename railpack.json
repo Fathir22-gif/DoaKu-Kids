@@ -7,13 +7,19 @@
     "bison",
     "re2c",
     "build-essential",
+    "pkg-config",
     "libxml2-dev",
     "libsqlite3-dev",
     "libssl-dev",
     "libcurl4-openssl-dev",
     "libonig-dev",
     "libreadline-dev",
-    "pkg-config",
-    "libzip-dev"
+    "libzip-dev",
+    "libpng-dev",
+    "libjpeg-dev",
+    "libwebp-dev",
+    "libfreetype6-dev",
+    "libicu-dev",
+    "gettext"
   ]
 }
