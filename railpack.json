@@ -13,6 +13,7 @@
     "libcurl4-openssl-dev",
     "libonig-dev",
     "libreadline-dev",
-    "pkg-config"
+    "pkg-config",
+    "libzip-dev"
   ]
 }
