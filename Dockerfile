@@ -1,7 +1,8 @@
-FROM php:8.4-fpm
+FROM php:8.2-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
+    nginx \
     git \
     curl \
     libpng-dev \
@@ -9,7 +10,11 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    nginx
+    sqlite3
+
+# Install Node.js (v20) and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -27,8 +32,18 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Install composer dependencies
-RUN composer install --optimize-autoloader --no-scripts --no-interaction
+RUN composer install --optimize-autoloader --no-dev --no-scripts --no-interaction
+
+# Install node dependencies and build frontend assets
+RUN npm install && npm run build
+
+# Configure Nginx
+COPY docker/nginx.conf /etc/nginx/sites-available/default
+
+# Create start script
+COPY docker/start.sh /usr/local/bin/start
+RUN chmod +x /usr/local/bin/start
 
 EXPOSE 80
 
-CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
+CMD ["/usr/local/bin/start"]
