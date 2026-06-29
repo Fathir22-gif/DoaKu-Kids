@@ -9,13 +9,13 @@ if [ ! -f /var/www/storage/database/database.sqlite ]; then
     echo "Created empty SQLite database in /var/www/storage/database/database.sqlite"
 fi
 
-# Pastikan permission folder storage dan database benar untuk SQLite & Laravel
-chown -R www-data:www-data /var/www/storage /var/www/database /var/www/bootstrap/cache
-chmod -R 775 /var/www/storage /var/www/database /var/www/bootstrap/cache
-
-# Jalankan migrasi database
+# Jalankan migrasi database (berpotensi membuat file log atau memodifikasi DB sebagai root)
 echo "Running database migrations..."
 php artisan migrate --force
+
+# Pastikan permission folder storage dan database benar untuk SQLite & Laravel SETELAH migrasi
+chown -R www-data:www-data /var/www/storage /var/www/database /var/www/bootstrap/cache
+chmod -R 775 /var/www/storage /var/www/database /var/www/bootstrap/cache
 
 # Jalankan PHP-FPM di background
 php-fpm -D
